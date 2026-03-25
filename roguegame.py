@@ -1,2 +1,4 @@
-# IM TRISTAN
-import time 
+import strut
+import time
+import pygames
+import math
