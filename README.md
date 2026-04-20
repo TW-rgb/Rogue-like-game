@@ -25,4 +25,4 @@ run "py roguegame.py"
 
 Art Tristan
 Ai Tristan
-Spelling Blake
+Ideas, Random Rooms, Items Blake
