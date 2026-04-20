@@ -1,6 +1,5 @@
-1. Project Title
-The name of your game
-Should be clear and descriptive
+## python
+**Skelton Shenanigans**
 
 
 
@@ -16,7 +15,7 @@ Should be clear and descriptive
 What the game is
 The objective (how you win/lose)
 What makes it interesting or unique
-
+**Skelton Shenanigans** is a roguelike dungeon dweller where you traverse a castles dungeon. You explore rooms one at a time where randomized enemies spawn depending on the time spent in the game. After you find the boss key which randomely spawns in rooms you can enter the bossroom. There will be many different bosses that are chosen either randomely or by special events the player makes like opening a secret wall or obtaining a certain item. The rooms are randomely generated ensuring a new experience every time, depending on the mode of the game(Baby, Normal, Impossible, and No Mercy). In addition the color scheme will change depending on the mode.
 
 
 
