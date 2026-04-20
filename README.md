@@ -20,7 +20,7 @@ shop
 rush mode
 alternate are in settings
 
-run "py roguegame.py"
+run 'py roguegame.py'
 
 
 Art Tristan
