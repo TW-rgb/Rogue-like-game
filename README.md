@@ -36,8 +36,10 @@ Rules of the game
 How the game progresses
 
 
-
-
+A S W D to move
+Pick up items to increase stats
+get hit get hurt
+life reach zero you Die
 
 
 
@@ -56,8 +58,10 @@ Multiple levels
 Sound effects
 
 
-
-
+Rogue like
+achievements unlock items
+score is how fast u can 10 floors
+or how far u can get in endless mode
 
 
 
@@ -72,7 +76,7 @@ How to run the game file once downloaded (ex. "run 'py mygame.py'")
 Should be written so a beginner could follow it
 
 
-
+run "py roguegame.py"
 
 
 
