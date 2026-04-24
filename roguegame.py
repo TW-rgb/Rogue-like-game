@@ -33,48 +33,61 @@ class Player:
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
 
-x = 50
-y = 50
+x = 32
+y = 32
 boxy = 0
 boxx = 0
 background = pygame.image.load('checker.jpg')
 pygame.init()
-screen = pygame.display.set_mode((600,600))
+screen = pygame.display.set_mode((640,640))
 running = True
 clock = pygame.time.Clock()
 platforms = [
 ]
 player = pygame.Rect(x,y,50,50)
 boxes = screen.width/50
-boxupdown = boxes*3
-boxleftright = boxes
+counter = 1
 while running:
     screen.blit(background,(0,0))
-    player = pygame.Rect(x,y,50,50)
+    player = pygame.Rect(x,y,32,32)
     pygame.draw.rect(screen, (0,255,0), player, 2)
-    if boxes > 0:
-        if boxes < boxupdown and boxleftright < boxupdown :
-            platforms.append(pygame.Rect(boxx,boxy,50,50))
-            boxy += 50
-            #time.sleep(1)
-            boxupdown -= 1
-            boxleftright += 1
-            print(boxleftright,"A")
-            print(boxupdown,"A")
-        if boxleftright == boxupdown:
-            boxupdown = boxupdown - boxes
-            boxleftright = boxleftright + boxes
-            boxy -= 50
-            print(boxleftright,"b")
-            print(boxupdown,"b")
-        if boxes < boxleftright and boxleftright > boxupdown:
-            platforms.append(pygame.Rect(boxx,boxy,50,50))
-            boxx += 50
-            #time.sleep(1)
-            boxupdown += 1
-            boxleftright -= 1
-            print(boxleftright,"c")
-            print(boxupdown,"c")
+    if counter == 1:
+        while screen.height > boxy >= 0:
+            platforms.append(pygame.Rect(boxx,boxy,32,32))
+            boxy += 32
+            print("check A")
+            print(boxy)
+            print(boxx)
+        while boxy == screen.height:
+            boxy -= 32
+            print("check A-b")
+            print(boxy)
+            print(boxx)
+        while screen.width > boxx >= 0:
+            platforms.append(pygame.Rect(boxx,boxy,32,32))
+            boxx += 32
+            print("check b")
+            print(boxy)
+            print(boxx)
+        while boxx == screen.width:
+            boxx -= 32
+            print("check A-b2")
+            print(boxy)
+            print(boxx)
+        while screen.height > boxy >= 0:
+            platforms.append(pygame.Rect(boxx,boxy,32,32))
+            boxy -= 32
+            print("check A2")
+            print(boxy)
+            print(boxx)
+        boxy = 0
+        while screen.width > boxx >= 0:
+            platforms.append(pygame.Rect(boxx,boxy,32,32))
+            boxx -= 32
+            print("check b2")
+            print(boxy)
+            print(boxx)
+        counter = 0
     for platform in platforms:
         pygame.draw.rect(screen, (255,0,0), platform, 10)
     for event in pygame.event.get():
@@ -85,13 +98,13 @@ while running:
                 elif debug_mode == False:
                     debug_mode = True
             if event.key == pygame.K_UP:
-                y -= 50
+                y -= 32
             if event.key == pygame.K_DOWN:
-                y += 50
+                y += 32
             if event.key == pygame.K_LEFT:
-                x -= 50
+                x -= 32
             if event.key == pygame.K_RIGHT:
-                x += 50
+                x += 32
             if event.type == pygame.QUIT:
                 running = False
 
