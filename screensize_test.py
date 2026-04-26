@@ -111,6 +111,10 @@ while running:
                 x += 32*screen_width
             if event.type == pygame.QUIT:
                 running = False
+            for boxx in walls
+                if player.colliderect(boxx):
+                    y = boxx.top + pikachu_rect.height
+                    vy = 0
     clock.tick(60)
     pygame.display.flip()
 pygame.quit()

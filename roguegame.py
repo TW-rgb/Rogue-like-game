@@ -107,7 +107,18 @@ while running:
                 x += 32
             if event.type == pygame.QUIT:
                 running = False
-
+            if x < 32:
+                x = 32
+                print("you hit a wall")
+            if x > 608:
+                x = 608
+                print("you hit a wall")
+            if y < 32:
+                y = 32
+                print("you hit a wall")
+            if y > 608:
+                y = 608
+                print("you hit a wall")
     clock.tick(60)
     pygame.display.flip()
 pygame.quit()

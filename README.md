@@ -26,3 +26,11 @@ run `py roguegame.py`
 Art Tristan
 Ai Tristan
 Ideas, Random Rooms, Items Blake
+
+
+
+
+
+4/26/2024
+Blake - I added collision to the walls today
+something that was challenging was not overcomplicating it
