@@ -32,7 +32,7 @@ class Player:
         #location y
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
-
+run = 0
 x = 32
 y = 32
 boxy = 0
@@ -90,14 +90,6 @@ while running:
             print(boxy)
             print(boxx)
         counter = 0
-    while x_floor < 608:
-        screen.blit(floor, (x_floor, y_floor))
-        x_floor += 32
-        y_floor = 32
-    while y_floor < 608:
-        screen.blit(floor2, (x_floor, y_floor))
-        y_floor += 32
-        x_floor = 32
     for platform in platforms:
         pygame.draw.rect(screen, (255,0,0), platform, 10)
     pygame.draw.rect(screen, (0,255,0), player, 2)
@@ -130,6 +122,21 @@ while running:
             if y > 608:
                 y = 608
                 print("you hit a wall")
+    if run > 0:
+        while floor_running:
+            while x_floor < 608:
+                print("x_floor")
+                screen.blit(floor, (x_floor, y_floor))
+                x_floor += 32
+                y_floor = 32
+            while y_floor < 608:
+                print("y_floor")
+                screen.blit(floor2, (x_floor, y_floor))
+                y_floor += 32
+                x_floor = 32
+            if x_floor == 608 and y_floor == 608:
+                floor_running = False
     clock.tick(60)
     pygame.display.flip()
+    run += 1
 pygame.quit()
