@@ -169,15 +169,15 @@ while running:
                 print("you hit a wall")
     if run > 0:
         while floor_running:
-            while x_floor < 608:
+            while x_floor < 640:
                 print("x_floor")
                 screen.blit(floor, (x_floor, y_floor))
-                x_floor += 32
+                x_floor = x_floor + 32
                 y_floor = 32
-            while y_floor < 608:
+            while y_floor < 640:
                 print("y_floor")
                 screen.blit(floor2, (x_floor, y_floor))
-                y_floor += 32
+                y_floor = y_floor + 32
                 x_floor = 32
             if x_floor == 608 and y_floor == 608:
                 floor_running = False
