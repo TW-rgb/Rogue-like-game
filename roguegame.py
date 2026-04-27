@@ -69,7 +69,6 @@ def blitall(listyss):
 # screen size math
 player = pygame.Rect(x,y,50,50)
 boxes = screen.width/50
-counter = 1
 
 #the actual game
 while running:
