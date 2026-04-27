@@ -37,9 +37,13 @@ x = 32
 y = 32
 boxy = 0
 boxx = 0
-background = pygame.image.load('checker.jpg')
+x_floor = 32
+y_floor = 32
+floor_running = True
 pygame.init()
 screen = pygame.display.set_mode((640,640))
+floor = pygame.image.load('Grassfloor1.png')
+floor2 = pygame.image.load('Grassfloor2.png')
 running = True
 clock = pygame.time.Clock()
 platforms = [
@@ -48,9 +52,7 @@ player = pygame.Rect(x,y,50,50)
 boxes = screen.width/50
 counter = 1
 while running:
-    screen.blit(background,(0,0))
     player = pygame.Rect(x,y,32,32)
-    pygame.draw.rect(screen, (0,255,0), player, 2)
     if counter == 1:
         while screen.height > boxy >= 0:
             platforms.append(pygame.Rect(boxx,boxy,32,32))
@@ -88,8 +90,17 @@ while running:
             print(boxy)
             print(boxx)
         counter = 0
+    while x_floor < 608:
+        screen.blit(floor, (x_floor, y_floor))
+        x_floor += 32
+        y_floor = 32
+    while y_floor < 608:
+        screen.blit(floor2, (x_floor, y_floor))
+        y_floor += 32
+        x_floor = 32
     for platform in platforms:
         pygame.draw.rect(screen, (255,0,0), platform, 10)
+    pygame.draw.rect(screen, (0,255,0), player, 2)
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
