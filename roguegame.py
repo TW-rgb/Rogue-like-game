@@ -32,13 +32,9 @@ class Player:
         #location y
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
-<<<<<<< HEAD
 run = 0
-=======
-
 
 # starting variables
->>>>>>> cffc1a8a16ab84c465da0bdf74f3c281309794dc
 x = 32
 y = 32
 boxy = 0
@@ -114,10 +110,8 @@ while running:
             print(boxy)
             print(boxx)
         counter = 0
-<<<<<<< HEAD
     for platform in platforms:
         pygame.draw.rect(screen, (255,0,0), platform, 10)
-=======
     #wall code end
     # floor code start
     while x_floor < 608:
@@ -132,7 +126,6 @@ while running:
     # begging of the drawing process
     blitall(platforms)
     blitall(floors)
->>>>>>> cffc1a8a16ab84c465da0bdf74f3c281309794dc
     pygame.draw.rect(screen, (0,255,0), player, 2)
     # ending
 
