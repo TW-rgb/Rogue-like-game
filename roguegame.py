@@ -6,6 +6,7 @@ import math
 import socket
 #handling multiple things at once.
 import threading
+import random
 
 #player class
 class Player:
@@ -34,8 +35,12 @@ class Player:
         #location y
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
+<<<<<<< HEAD
 
 
+=======
+run = 0
+>>>>>>> c840d688f850e1f9251bb98d472bb65d69c31ed9
 
 # starting variables
 x = 32
@@ -68,9 +73,9 @@ floors = [
 ]
 
 #functions
-def blitall(listyss):
-    for II in listyss:
-        pygame.draw.rect(screen, (255,0,0), II, 10)
+#def blitall(listyss):
+    #for II in listyss:
+    #    pygame.draw.rect(screen, (255,0,0), II, 10)
 
 # screen size math
 player = pygame.Rect(x,y,50,50)
@@ -121,8 +126,11 @@ while running:
             print(boxy)
             print(boxx)
         counter = 0
+<<<<<<< HEAD
     for platform in platforms:
         pygame.draw.rect(screen, (255,0,0), platform, 10)
+=======
+>>>>>>> c840d688f850e1f9251bb98d472bb65d69c31ed9
     #wall code end
     # floor code start
     #floor code for x axis
@@ -142,8 +150,23 @@ while running:
 
     # floor code end
     # begging of the drawing process
+<<<<<<< HEAD
     blitall(platforms)
     blitall(floors)
+=======
+    for platform in platforms:
+        texture = random.randint(1,3)
+        print(texture)
+        boxx = platform.x
+        boxy = platform.y
+        if texture == 1:
+            platformimage = pygame.image.load('tree1.png')
+        if texture == 2:
+            platformimage = pygame.image.load('tree2.png')
+        if texture == 3:
+            platformimage = pygame.image.load('tree3.png')
+        screen.blit(platformimage, (boxx,boxy))
+>>>>>>> c840d688f850e1f9251bb98d472bb65d69c31ed9
     pygame.draw.rect(screen, (0,255,0), player, 2)
     # ending
     #gets key presses single cuz 32 bit system
