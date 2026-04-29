@@ -59,9 +59,9 @@ floors = [
 ]
 
 #functions
-#def blitall(listyss):
-    #for II in listyss:
-    #    pygame.draw.rect(screen, (255,0,0), II, 10)
+def blitall(listyss):
+    for II in listyss:
+        pygame.draw.rect(screen, (255,0,0), II, 10)
 
 # screen size math
 player = pygame.Rect(x,y,50,50)
