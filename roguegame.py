@@ -170,6 +170,7 @@ while running:
                         x -=32
             if event.type == pygame.QUIT:
                 running = False
+<<<<<<< HEAD
 =======
             #wall code up
             if x < 32:
