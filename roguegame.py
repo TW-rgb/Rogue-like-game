@@ -35,12 +35,8 @@ class Player:
         #location y
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
-<<<<<<< HEAD
-
-
-=======
 run = 0
->>>>>>> c840d688f850e1f9251bb98d472bb65d69c31ed9
+
 
 # starting variables
 x = 32
@@ -90,47 +86,56 @@ while running:
     # player end
     #wall code
     if counter == 1:
+        #check for a and prints/blits wall to that location and repeats
         while screen.height > boxy >= 0:
             platforms.append(pygame.Rect(boxx,boxy,32,32))
             boxy += 32
             print("check A")
             print(boxy)
             print(boxx)
+                        #check for a-b and prints/blits wall to that location and repeats
         while boxy == screen.height:
             boxy -= 32
             print("check A-b")
             print(boxy)
             print(boxx)
+            #repeats
         while screen.width > boxx >= 0:
+                        #check for b and prints/blits wall to that location
             platforms.append(pygame.Rect(boxx,boxy,32,32))
             boxx += 32
             print("check b")
             print(boxy)
             print(boxx)
+            #repeats
         while boxx == screen.width:
+                        #check for a-b2 and prints/blits wall to that location
             boxx -= 32
             print("check A-b2")
             print(boxy)
             print(boxx)
+            #repeats
         while screen.height > boxy >= 0:
+                        #check for A2 and prints/blits wall to that location
             platforms.append(pygame.Rect(boxx,boxy,32,32))
             boxy -= 32
             print("check A2")
             print(boxy)
             print(boxx)
         boxy = 0
+        #repeats
         while screen.width > boxx >= 0:
+            #check for b2 and prints/blits wall to that location
             platforms.append(pygame.Rect(boxx,boxy,32,32))
             boxx -= 32
             print("check b2")
             print(boxy)
             print(boxx)
         counter = 0
-<<<<<<< HEAD
+#draws platforms
     for platform in platforms:
         pygame.draw.rect(screen, (255,0,0), platform, 10)
-=======
->>>>>>> c840d688f850e1f9251bb98d472bb65d69c31ed9
+
     #wall code end
     # floor code start
     #floor code for x axis
@@ -150,23 +155,25 @@ while running:
 
     # floor code end
     # begging of the drawing process
-<<<<<<< HEAD
+#blits all platforms anf floors
     blitall(platforms)
     blitall(floors)
-=======
+    #randomizes whats being shown
     for platform in platforms:
         texture = random.randint(1,3)
         print(texture)
         boxx = platform.x
         boxy = platform.y
+        #tree1
         if texture == 1:
             platformimage = pygame.image.load('tree1.png')
         if texture == 2:
+            #tree2
             platformimage = pygame.image.load('tree2.png')
         if texture == 3:
+            #tree3
             platformimage = pygame.image.load('tree3.png')
         screen.blit(platformimage, (boxx,boxy))
->>>>>>> c840d688f850e1f9251bb98d472bb65d69c31ed9
     pygame.draw.rect(screen, (0,255,0), player, 2)
     # ending
     #gets key presses single cuz 32 bit system
