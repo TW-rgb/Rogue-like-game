@@ -69,9 +69,9 @@ floors = [
 ]
 
 #functions
-#def blitall(listyss):
-    #for II in listyss:
-    #    pygame.draw.rect(screen, (255,0,0), II, 10)
+def blitall(listyss):
+    for II in listyss:
+        pygame.draw.rect(screen, (255,0,0), II, 10)
 
 # screen size math
 player = pygame.Rect(x,y,50,50)
@@ -218,8 +218,9 @@ while running:
                 y = 608
                 print("you hit a wall")
                 wall_score -= 1
+    counter = 0
     #prints wall score/score
-    print(wall_Score)
+    #print(wall_score)
     clock.tick(60)
     pygame.display.flip()
 pygame.quit()
