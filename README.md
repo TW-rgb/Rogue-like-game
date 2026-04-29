@@ -36,4 +36,4 @@ Blake - I added collision to the walls today
 something that was challenging was not overcomplicating it
 
 4/29/2026
-added more comments and remade floor-blake
+added more comments and remade floor-blake, tristan removed all my code fahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
