@@ -31,6 +31,9 @@ Ideas, Random Rooms, Items Blake
 
 
 
-4/26/2024
+4/26/2026
 Blake - I added collision to the walls today
 something that was challenging was not overcomplicating it
+
+4/29/2026
+added more comments and remade floor-blake
