@@ -44,6 +44,7 @@ x_floor = 32
 y_floor = 32
 floor_running = True
 newroom = 1
+debug_mode = True
 
 pygame.init()
 screen = pygame.display.set_mode((640,640))
@@ -57,7 +58,8 @@ walls = [
 ]
 floors = [
 ]
-
+textures = [
+]
 #functions
 def blitall(listyss):
     for II in listyss:
@@ -112,17 +114,9 @@ while running:
             print(boxx)
     #wall code end
     # floor code start
-    while x_floor < 608:
-        screen.blit(floor, (x_floor, y_floor))
-        x_floor += 32
-        y_floor = 32
-    while y_floor < 608:
-        screen.blit(floor2, (x_floor, y_floor))
-        y_floor += 32
-        x_floor = 32
     # floor code end
     # begging of the drawing process
-    if newroom == 1
+    if newroom == 1:
         for wall in walls:
             texture = random.randint(1,3)
             print(texture)
@@ -134,10 +128,20 @@ while running:
                 platformimage = pygame.image.load('tree2.png')
             if texture == 3:
                 platformimage = pygame.image.load('tree3.png')
+            textures.append(platformimage)
             screen.blit(platformimage, (boxx,boxy))
+    for wall, platformimage in zip(walls, textures):
+        boxx = wall.x
+        boxy = wall.y
+        screen.blit(platformimage, (boxx,boxy))
+
     pygame.draw.rect(screen, (0,255,0), player, 2)
+
+    if debug_mode == True:
+        for wall in walls:
+            pygame.draw.rect(screen, (255,0,0), wall, 2)
     # end of room generation
-    if  newroom == 1:
+    if newroom == 1:
         newroom = 0
     # controls
 
@@ -150,46 +154,35 @@ while running:
                     debug_mode = True
             if event.key == pygame.K_UP:
                 y -= 32
+                player = pygame.Rect(x,y,32,32)
                 for wall in walls:
                     if player.colliderect(wall):
                         y +=32
+                        print("hit wall")
             if event.key == pygame.K_DOWN:
                 y += 32
+                player = pygame.Rect(x,y,32,32)
                 for wall in walls:
                     if player.colliderect(wall):
                         y -=32
+                        print("hit wall")
             if event.key == pygame.K_LEFT:
                 x -= 32
+                player = pygame.Rect(x,y,32,32)
                 for wall in walls:
                     if player.colliderect(wall):
-                        x -=32
+                        x +=32
+                        print("hit wall")
             if event.key == pygame.K_RIGHT:
                 x += 32
+                player = pygame.Rect(x,y,32,32)
                 for wall in walls:
                     if player.colliderect(wall):
                         x -=32
+                        print("hit wall")
             if event.type == pygame.QUIT:
                 running = False
-            #wall code up
-            if x < 32:
-                x = 32
-                print("you hit a wall")
-                wall_score -= 1
-            #wall code down
-            if x > 608:
-                x = 608
-                print("you hit a wall")
-                wall_score -= 1
-            #wall code left side
-            if y < 32:
-                y = 32
-                print("you hit a wall")
-                wall_score -= 1
-            #wall code right side
-            if y > 608:
-                y = 608
-                print("you hit a wall")
-                wall_score -= 1
+
     counter = 0
     #prints wall score/score
     #print(wall_score)
