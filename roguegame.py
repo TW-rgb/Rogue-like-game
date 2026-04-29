@@ -170,6 +170,30 @@ while running:
                         x -=32
             if event.type == pygame.QUIT:
                 running = False
+=======
+            #wall code up
+            if x < 32:
+                x = 32
+                print("you hit a wall")
+                wall_score -= 1
+            #wall code down
+            if x > 608:
+                x = 608
+                print("you hit a wall")
+                wall_score -= 1
+            #wall code left side
+            if y < 32:
+                y = 32
+                print("you hit a wall")
+                wall_score -= 1
+            #wall code right side
+            if y > 608:
+                y = 608
+                print("you hit a wall")
+                wall_score -= 1
+    counter = 0
+    #prints wall score/score
+    #print(wall_score)
     clock.tick(60)
     pygame.display.flip()
     run += 1
