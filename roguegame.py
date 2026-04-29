@@ -44,12 +44,19 @@ x_floor = 32
 y_floor = 32
 floor_running = True
 newroom = 1
+<<<<<<< HEAD
 debug_mode = True
 
+=======
+health = 10
+enemie_x = 608
+enemie_y = 608
+>>>>>>> e7b0ccb76e5ee72389da2f62f74076542e6f7351
 pygame.init()
 screen = pygame.display.set_mode((640,640))
 floor = pygame.image.load('Grassfloor1.png')
 floor2 = pygame.image.load('Grassfloor2.png')
+enemy = pygame.image.load('skelly(D).png')
 running = True
 clock = pygame.time.Clock()
 
@@ -143,7 +150,29 @@ while running:
     # end of room generation
     if newroom == 1:
         newroom = 0
-    # controls
+    screen.blit(enemy, (enemie_x, enemie_y))
+    #enemies
+    if x > enemie_x:
+        enemie_x += 32
+        if player.colliderect(enemy):
+            health -= 1
+            print(health)
+    if x < enemie_x:
+        enemie_x -= 32
+        if player.colliderect(enemy):
+            health -= 1
+            print(health)
+    if y > enemie_y:
+        enemie_y += 32
+        if player.colliderect(enemy):
+            health -= 1
+            print(health)
+    if y < enemie_y:
+        enemie_y -= 32
+        if player.colliderect(enemy):
+            health -= 1
+            print(health)
+     # controls
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
