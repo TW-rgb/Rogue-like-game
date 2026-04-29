@@ -195,6 +195,7 @@ while running:
     counter = 0
     #prints wall score/score
     #print(wall_score)
+>>>>>>> 16c90b24767d53e26d37559ebd7209b5ff7462db
     clock.tick(60)
     pygame.display.flip()
     run += 1
