@@ -33,7 +33,6 @@ class Player:
         #location y
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
-run = 0
 
 # starting variables
 x = 32
@@ -44,19 +43,13 @@ x_floor = 32
 y_floor = 32
 floor_running = True
 newroom = 1
-<<<<<<< HEAD
 debug_mode = True
-
-=======
 health = 10
-enemie_x = 608
-enemie_y = 608
->>>>>>> e7b0ccb76e5ee72389da2f62f74076542e6f7351
+enemycount = 3
 pygame.init()
 screen = pygame.display.set_mode((640,640))
 floor = pygame.image.load('Grassfloor1.png')
 floor2 = pygame.image.load('Grassfloor2.png')
-enemy = pygame.image.load('skelly(D).png')
 running = True
 clock = pygame.time.Clock()
 
@@ -66,6 +59,10 @@ walls = [
 floors = [
 ]
 textures = [
+]
+enemys = [
+]
+enemytextures = [
 ]
 #functions
 def blitall(listyss):
@@ -137,43 +134,103 @@ while running:
                 platformimage = pygame.image.load('tree3.png')
             textures.append(platformimage)
             screen.blit(platformimage, (boxx,boxy))
+
+    # new enemy generation
+    while enemycount > 0:
+        enemie_x = random.randrange(0,640,32)
+        enemie_y = random.randrange(0,640,32)
+        print(enemie_y)
+        print(enemie_x)
+        enemys.append(pygame.Rect(enemie_x, enemie_y,32,32))
+        enemycount -= 1
+    for enemy in enemys:
+        #texture = random.randint(1,3)
+        #print(texture)
+        enemie_x = enemy.x
+        enemie_y = enemy.y
+        #if texture == 1:
+            #platformimage = pygame.image.load('tree1.png')
+        #if texture == 2:
+            #platformimage = pygame.image.load('tree2.png')
+        #if texture == 3:
+            #platformimage = pygame.image.load('tree3.png')
+        enemyimage = pygame.image.load('skelly(D).png')
+        enemytextures.append(enemyimage)
+        screen.blit(enemyimage, (enemie_x,enemie_y))
+    if debug_mode == True:
+        for wall in walls:
+            pygame.draw.rect(screen, (255,0,0), wall, 2)
+    # end of room/enemu generation
+    if newroom == 1:
+        newroom = 0
+    #enemy MOVEMENT
+    for index, enemy in enumerate(enemys):
+        # RIGHT MOVEMENT
+        if x > enemie_x:
+            enemie_x += 32
+            enemys[index] = pygame.Rect(enemie_x, enemie_y,32,32)
+            if enemy.colliderect(player):
+                health -= 1
+                print(health)
+                enemie_x -= 32
+            for otherenemy in enemys:
+                if otherenemy == enemy:
+                    continue
+                if enemy.colliderect(otherenemy):
+                    enemie_x -= 32
+        # LEFT MOVEMENT
+        elif x < enemie_x:
+            enemie_x -= 32
+            enemys[index] = pygame.Rect(enemie_x, enemie_y,32,32)
+            if enemy.colliderect(player):
+                health -= 1
+                print(health)
+                enemie_x += 32
+            for otherenemy in enemys:
+                if otherenemy == enemy:
+                    continue
+                if enemy.colliderect(otherenemy):
+                    enemie_x += 32
+        # UP MOVEMENT
+        elif y < enemie_y:
+            enemie_y -= 32
+            enemys[index] = pygame.Rect(enemie_x, enemie_y,32,32)
+            if enemy.colliderect(player):
+                health -= 1
+                print(health)
+                enemie_y += 32
+            for otherenemy in enemys:
+                if otherenemy == enemy:
+                    continue
+                if enemy.colliderect(otherenemy):
+                    enemie_y += 32
+        # DOWN MOVEMENT
+        elif y > enemie_y:
+            enemie_y += 32
+            enemys[index] = pygame.Rect(enemie_x, enemie_y,32,32)
+            if enemy.colliderect(player):
+                health -= 1
+                print(health)
+                enemie_y -= 32
+            for otherenemy in enemys:
+                if otherenemy == enemy:
+                    continue
+                if enemy.colliderect(otherenemy):
+                    enemie_y -= 32
+    #rendering
     for wall, platformimage in zip(walls, textures):
         boxx = wall.x
         boxy = wall.y
         screen.blit(platformimage, (boxx,boxy))
+    for enemy, enemyimage in zip(enemys, enemytextures):
+        print(enemie_y)
+        print(enemie_x)
+        enemie_x = enemy.x
+        enemie_y = enemy.y
+        screen.blit(enemyimage, (enemie_x,enemie_y))
 
     pygame.draw.rect(screen, (0,255,0), player, 2)
-
-    if debug_mode == True:
-        for wall in walls:
-            pygame.draw.rect(screen, (255,0,0), wall, 2)
-    # end of room generation
-    if newroom == 1:
-        newroom = 0
-    screen.blit(enemy, (enemie_x, enemie_y))
-    #enemies
-    if x > enemie_x:
-        enemie_x += 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
-    if x < enemie_x:
-        enemie_x -= 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
-    if y > enemie_y:
-        enemie_y += 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
-    if y < enemie_y:
-        enemie_y -= 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
      # controls
-
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
@@ -215,7 +272,6 @@ while running:
     counter = 0
     #prints wall score/score
     #print(wall_score)
-    clock.tick(60)
+    clock.tick(2)
     pygame.display.flip()
-    run += 1
 pygame.quit()
