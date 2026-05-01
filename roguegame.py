@@ -33,7 +33,6 @@ class Player:
         #location y
         self.bullet
         #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
-run = 0
 
 # starting variables
 x = 32
@@ -44,14 +43,12 @@ x_floor = 32
 y_floor = 32
 floor_running = True
 newroom = 1
-<<<<<<< HEAD
 debug_mode = True
 
-=======
+run = True
 health = 10
 enemie_x = 608
 enemie_y = 608
->>>>>>> e7b0ccb76e5ee72389da2f62f74076542e6f7351
 pygame.init()
 screen = pygame.display.set_mode((640,640))
 floor = pygame.image.load('Grassfloor1.png')
@@ -78,7 +75,7 @@ boxes = screen.width/50
 
 #the actual game
 while running:
-
+    run = True
     #player
     player = pygame.Rect(x,y,32,32)
     # player end
@@ -154,24 +151,24 @@ while running:
     #enemies
     if x > enemie_x:
         enemie_x += 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
+        #if player.colliderect(enemy):
+            #health -= 1
+            #print(health)
     if x < enemie_x:
         enemie_x -= 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
+        #if player.colliderect(enemy):
+            #health -= 1
+            #print(health)
     if y > enemie_y:
         enemie_y += 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
+        #if player.colliderect(enemy):
+            #health -= 1
+            #print(health)
     if y < enemie_y:
         enemie_y -= 32
-        if player.colliderect(enemy):
-            health -= 1
-            print(health)
+        #if player.colliderect(enemy):
+            #health -= 1
+            #print(health)
      # controls
 
     for event in pygame.event.get():
@@ -211,11 +208,21 @@ while running:
                         print("hit wall")
             if event.type == pygame.QUIT:
                 running = False
-
+    while x_floor < 576 and run == True:
+        screen.blit(floor, (x_floor, y_floor))
+        x_floor += 32
+    while x_floor > 544 and run == True:
+        screen.blit(floor2, (x_floor, y_floor))
+        y_floor += 32
+        x_floor = 32
+    if y_floor > 544 and x_floor > 544 and run == True:
+        x_floor = 0
+        y_floor = 0
+        run = False
+    run = False
     counter = 0
     #prints wall score/score
     #print(wall_score)
     clock.tick(60)
     pygame.display.flip()
-    run += 1
 pygame.quit()
