@@ -53,7 +53,6 @@ pygame.init()
 screen = pygame.display.set_mode((640,640))
 floor = pygame.image.load('Grassfloor1.png')
 floor2 = pygame.image.load('Grassfloor2.png')
-enemy = pygame.image.load('skelly(D).png')
 running = True
 clock = pygame.time.Clock()
 
@@ -65,6 +64,7 @@ floors = [
 textures = [
 ]
 enemys = [
+]
 enemytextures = [
 ]
 #functions
