@@ -44,7 +44,7 @@ y_floor = 32
 floor_running = True
 newroom = 1
 debug_mode = True
-
+enemycount = 0
 run = True
 health = 10
 enemie_x = 608
@@ -240,7 +240,7 @@ while running:
     # end of room generation
     if newroom == 1:
         newroom = 0
-    screen.blit(enemy, (enemie_x, enemie_y))
+
     #enemies
     if x > enemie_x:
         enemie_x += 32
@@ -307,14 +307,14 @@ while running:
         screen.blit(floor2, (x_floor, y_floor))
         y_floor += 32
         x_floor = 32
-    if y_floor > 544 and x_floor > 544 and run == True:
-        x_floor = 0
-        y_floor = 0
-        run = False
+        if y_floor > 544 and x > 544 and run == True:
+            x_floor = 0
+            y_floor = 0
+            run = False
     run = False
     counter = 0
     #prints wall score/score
     #print(wall_score)
-    clock.tick(2)
+    clock.tick(10)
     pygame.display.flip()
 pygame.quit()
