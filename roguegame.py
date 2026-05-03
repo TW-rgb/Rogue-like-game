@@ -1,3 +1,4 @@
+#random imports that we might need idk
 import struct
 import time
 import pygame
@@ -233,14 +234,13 @@ while running:
         screen.blit(enemyimage, (enemie_x,enemie_y))
 
     pygame.draw.rect(screen, (0,255,0), player, 2)
-
+#for debug mode it shows the hit boxxes
     if debug_mode == True:
         for wall in walls:
             pygame.draw.rect(screen, (255,0,0), wall, 2)
     # end of room generation
     if newroom == 1:
         newroom = 0
-
     #enemies
     if x > enemie_x:
         enemie_x += 32
@@ -265,56 +265,69 @@ while running:
      # controls
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
+            #debug mode with one button
             if event.key == pygame.K_d:
+                #if debug modes on its sets it to off
                 if debug_mode == True:
                     debug_mode = False
+                        #if debug modes off its sets it to on
                 elif debug_mode == False:
                     debug_mode = True
+                        #moves the player left 32
             if event.key == pygame.K_UP:
                 y -= 32
                 player = pygame.Rect(x,y,32,32)
                 for wall in walls:
+                        #detects if player hits a wall
                     if player.colliderect(wall):
                         y +=32
                         print("hit wall")
+                            #moves the player down 32
             if event.key == pygame.K_DOWN:
                 y += 32
                 player = pygame.Rect(x,y,32,32)
                 for wall in walls:
+                        #detects if player hits a wall
                     if player.colliderect(wall):
                         y -=32
                         print("hit wall")
+                        #moves the player left 32
             if event.key == pygame.K_LEFT:
                 x -= 32
                 player = pygame.Rect(x,y,32,32)
                 for wall in walls:
+                        #detects if player hits a wall
                     if player.colliderect(wall):
                         x +=32
                         print("hit wall")
+                        #moves the player right 32
             if event.key == pygame.K_RIGHT:
                 x += 32
                 player = pygame.Rect(x,y,32,32)
+                #detects if player hits a wall
                 for wall in walls:
                     if player.colliderect(wall):
                         x -=32
                         print("hit wall")
+                    #ends game
             if event.type == pygame.QUIT:
                 running = False
+                #makes it go right, for floor generation
     while x_floor < 576 and run == True:
         screen.blit(floor, (x_floor, y_floor))
         x_floor += 32
+        #makes it go down one, for floor generation
     while x_floor > 544 and run == True:
         screen.blit(floor2, (x_floor, y_floor))
         y_floor += 32
         x_floor = 32
-        if y_floor > 544 and x > 544 and run == True:
+        #should reset wall code
+        if y_floor > 544 and x_floor > 544 and run == True:
             x_floor = 0
             y_floor = 0
             run = False
-    run = False
     counter = 0
-    #prints wall score/score
-    #print(wall_score)
-    clock.tick(10)
+#tick rate and prints it to screen
+    clock.tick(2)
     pygame.display.flip()
 pygame.quit()
