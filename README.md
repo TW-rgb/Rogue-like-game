@@ -28,12 +28,18 @@ Ai Tristan
 Ideas, Random Rooms, Items Blake
 
 
+4/24/2026-Added basic wall generation-Tristan
+Worked on floor code-Blake
 
 
-
-4/26/2026
+4/27/2026
 Blake - I added collision to the walls today
 something that was challenging was not overcomplicating it
+made wall generation better-Tristan
 
 4/29/2026
-added more comments and remade floor-blake, tristan removed all my code fahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+added more comments and remade floor-blake
+added randomized walls pngs-Tristan
+
+5/1/2026 fixed enemy code-Tristan
+Started work on items- Blake
