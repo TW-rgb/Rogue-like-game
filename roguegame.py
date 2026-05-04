@@ -40,29 +40,29 @@ x = 32
 y = 32
 boxy = 0
 boxx = 0
-x_floor = 32
-y_floor = 32
-floor_running = True
+floorx = 32
+floory = 32
 newroom = 1
-debug_mode = True
-enemycount = 0
+debug_mode = False
+enemycount = 2
 run = True
 health = 10
 enemie_x = 608
 enemie_y = 608
 pygame.init()
 screen = pygame.display.set_mode((640,640))
-floor = pygame.image.load('Grassfloor1.png')
-floor2 = pygame.image.load('Grassfloor2.png')
 running = True
 clock = pygame.time.Clock()
+firstime = 1
 
 # list
 walls = [
 ]
+textures = [
+]
 floors = [
 ]
-textures = [
+floortextures = [
 ]
 enemys = [
 ]
@@ -74,15 +74,13 @@ def blitall(listyss):
         pygame.draw.rect(screen, (255,0,0), II, 10)
 
 # screen size math
-player = pygame.Rect(x,y,50,50)
+player = pygame.Rect(x,y,32,32)
 boxes = screen.width/50
 
 #the actual game
 while running:
     run = True
-    #player
-    player = pygame.Rect(x,y,32,32)
-    # player end
+    #player    # player end
     #wall code
     if newroom == 1:
         while screen.height > boxy >= 0:
@@ -122,6 +120,14 @@ while running:
             print(boxx)
     #wall code end
     # floor code start
+    while floory < screen.height and newroom == 1:
+        floors.append(pygame.Rect(floorx, floory, 32,32))
+        floory += 32
+        while floorx < screen.width and floory == screen.height-32 and floorx != screen.width-32:
+            floorx += 32
+            floory = 32
+        if floorx == screen.width -32:
+            floory = 9999
     # floor code end
     # begging of the drawing process
     if newroom == 1:
@@ -138,7 +144,19 @@ while running:
                 platformimage = pygame.image.load('tree3.png')
             textures.append(platformimage)
             screen.blit(platformimage, (boxx,boxy))
-
+        for floor in floors:
+            texture = random.randint(1,3)
+            print(texture)
+            floorx = floor.x
+            floory = floor.y
+            if texture == 1:
+                floortexture = pygame.image.load('Grassfloor1.png')
+            if texture == 2:
+                floortexture = pygame.image.load('Grassfloor2.png')
+            if texture == 3:
+                floortexture = pygame.image.load('Daisy1.png')
+            floortextures.append(floortexture)
+            screen.blit(floortexture, (floorx, floory))
     # new enemy generation
     while enemycount > 0:
         enemie_x = random.randrange(0,640,32)
@@ -169,6 +187,8 @@ while running:
         newroom = 0
     #enemy MOVEMENT
     for index, enemy in enumerate(enemys):
+        enemie_x = enemy.x
+        enemie_y = enemy.y
         # RIGHT MOVEMENT
         if x > enemie_x:
             enemie_x += 32
@@ -226,14 +246,15 @@ while running:
         boxx = wall.x
         boxy = wall.y
         screen.blit(platformimage, (boxx,boxy))
+    for floor, floortexture in zip(floors, floortextures):
+        floorx = floor.x
+        floory = floor.y
+        screen.blit(floortexture, (floorx, floory))
     for enemy, enemyimage in zip(enemys, enemytextures):
-        print(enemie_y)
-        print(enemie_x)
         enemie_x = enemy.x
         enemie_y = enemy.y
         screen.blit(enemyimage, (enemie_x,enemie_y))
 
-    pygame.draw.rect(screen, (0,255,0), player, 2)
 #for debug mode it shows the hit boxxes
     if debug_mode == True:
         for wall in walls:
@@ -241,93 +262,73 @@ while running:
     # end of room generation
     if newroom == 1:
         newroom = 0
-    #enemies
-    if x > enemie_x:
-        enemie_x += 32
-        #if player.colliderect(enemy):
-            #health -= 1
-            #print(health)
-    if x < enemie_x:
-        enemie_x -= 32
-        #if player.colliderect(enemy):
-            #health -= 1
-            #print(health)
-    if y > enemie_y:
-        enemie_y += 32
-        #if player.colliderect(enemy):
-            #health -= 1
-            #print(health)
-    if y < enemie_y:
-        enemie_y -= 32
-        #if player.colliderect(enemy):
-            #health -= 1
-            #print(health)
      # controls
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            #debug mode with one button
-            if event.key == pygame.K_d:
-                #if debug modes on its sets it to off
-                if debug_mode == True:
-                    debug_mode = False
-                        #if debug modes off its sets it to on
-                elif debug_mode == False:
-                    debug_mode = True
-                        #moves the player left 32
-            if event.key == pygame.K_UP:
-                y -= 32
-                player = pygame.Rect(x,y,32,32)
-                for wall in walls:
-                        #detects if player hits a wall
-                    if player.colliderect(wall):
-                        y +=32
-                        print("hit wall")
-                            #moves the player down 32
-            if event.key == pygame.K_DOWN:
-                y += 32
-                player = pygame.Rect(x,y,32,32)
-                for wall in walls:
-                        #detects if player hits a wall
-                    if player.colliderect(wall):
-                        y -=32
-                        print("hit wall")
-                        #moves the player left 32
-            if event.key == pygame.K_LEFT:
-                x -= 32
-                player = pygame.Rect(x,y,32,32)
-                for wall in walls:
-                        #detects if player hits a wall
-                    if player.colliderect(wall):
-                        x +=32
-                        print("hit wall")
-                        #moves the player right 32
-            if event.key == pygame.K_RIGHT:
-                x += 32
-                player = pygame.Rect(x,y,32,32)
-                #detects if player hits a wall
-                for wall in walls:
-                    if player.colliderect(wall):
-                        x -=32
-                        print("hit wall")
-                    #ends game
-            if event.type == pygame.QUIT:
-                running = False
-                #makes it go right, for floor generation
-    while x_floor < 576 and run == True:
-        screen.blit(floor, (x_floor, y_floor))
-        x_floor += 32
-        #makes it go down one, for floor generation
-    while x_floor > 544 and run == True:
-        screen.blit(floor2, (x_floor, y_floor))
-        y_floor += 32
-        x_floor = 32
-        #should reset wall code
-        if y_floor > 544 and x_floor > 544 and run == True:
-            x_floor = 0
-            y_floor = 0
-            run = False
-    counter = 0
+    waiting =1
+    if firstime == 1:
+        firstime = 0
+        waiting = 0
+        print("click arrows to begin")
+    while waiting == 1:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                #debug mode with one button
+                if event.key == pygame.K_d:
+                    waiting = 0
+                    #if debug modes on its sets it to off
+                    if debug_mode == True:
+                        debug_mode = False
+                            #if debug modes off its sets it to on
+                    elif debug_mode == False:
+                        debug_mode = True
+                            #moves the player left 32
+                if event.key == pygame.K_UP:
+                    waiting = 0
+                    y -= 32
+                    player = pygame.Rect(x,y,32,32)
+                    for wall in walls:
+                            #detects if player hits a wall
+                        if player.colliderect(wall):
+                            y +=32
+                            print("hit wall")
+                                #moves the player down 32
+                if event.key == pygame.K_DOWN:
+                    waiting = 0
+                    y += 32
+                    player = pygame.Rect(x,y,32,32)
+                    for wall in walls:
+                            #detects if player hits a wall
+                        if player.colliderect(wall):
+                            y -=32
+                            print("hit wall")
+                            #moves the player left 32
+                if event.key == pygame.K_LEFT:
+                    waiting = 0
+                    x -= 32
+                    player = pygame.Rect(x,y,32,32)
+                    for wall in walls:
+                            #detects if player hits a wall
+                        if player.colliderect(wall):
+                            x +=32
+                            print("hit wall")
+                            #moves the player right 32
+                if event.key == pygame.K_RIGHT:
+                    waiting = 0
+                    x += 32
+                    player = pygame.Rect(x,y,32,32)
+                    #detects if player hits a wall
+                    for wall in walls:
+                        if player.colliderect(wall):
+                            x -=32
+                            print("hit wall")
+                        #ends game
+                if event.type == pygame.QUIT:
+                    waiting = 0
+                    running = False
+#special character loading to avoid delay
+    player = pygame.Rect(x,y,32,32)
+    pygame.draw.rect(screen, (0,255,0), player, 2)
+
 #tick rate and prints it to screen
-    clock.tick(2)
+    clock.tick(60)
     pygame.display.flip()
 pygame.quit()
