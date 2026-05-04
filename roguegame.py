@@ -27,15 +27,35 @@ class Player:
         self.level = 1
         #scales exponetly with higher levels, randomized xp requirement but still exponetial
 
-Mage = Player(Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,1)
+Mage = Player(50 ,100 ,5 ,1 ,5 ,15 ,inventory ,1)
+user = Mage
+
+warrior = Player(100 ,50 ,15 ,1 ,8 ,5 ,inventory ,1)
+user = warrior
+
+tanker = Player(140 ,10 ,8 ,1 ,15 ,5 ,inventory ,1)
+user = tanker
+
+peasent = Player(70 ,25 ,10 ,1 ,10 ,10 ,inventory ,1)
+user = peasent
+
+
+user.hp
+
+
+#filler = Player(Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,1)
+
 # items
-common = ["Broken knife", ]
-Broken knife
+common = ["Broken knife","Broken wand" ]
+#Broken knife
+#
 uncommon = []
 rare = []
 epic = []
 legebdary = []
 unique = []
+
+inventory.count("Broken knife")
 
 # starting variables
 x = 32
