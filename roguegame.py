@@ -9,31 +9,33 @@ import random
 
 
 class Player:
-    def __init__(self ,Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,level ,user_class ,x ,y ,bullet):
-        self.Hp
+    def __init__(self ,Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,level):
+        self.Hp = Hp
         #hp points, depends on user_class
-        self.Mp
+        self.Mp = Mp
         #attacks - from mp for magecraft
-        self.Strength
+        self.Strength = Speed
         #base damage, depends on user_class
-        self.Speed
+        self.Speed = Speed
         #base speed, depends on user_class
-        self.Defense
+        self.Defense = Defense
         #damage reduction
-        self.Intellgence
+        self.Intellgence = Int
         #changes magic damage, base increase depends on user_class
-        self.inventory
+        self.inventory = []
         #pulls items from dungeon, effects(boomerang gun, ice effect, idk)
-        self.level
+        self.level = 1
         #scales exponetly with higher levels, randomized xp requirement but still exponetial
-        self.user_class
-        #picks at beggining of game
-        self.x
-        #location x
-        self.y
-        #location y
-        self.bullet
-        #sub classes - bullet speed, bullet size, bullet path(boomerang type shish), bullet effects
+
+Mage = Player(Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,1)
+# items
+common = ["Broken knife", ]
+Broken knife
+uncommon = []
+rare = []
+epic = []
+legebdary = []
+unique = []
 
 # starting variables
 x = 32
