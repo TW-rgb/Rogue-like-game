@@ -57,7 +57,11 @@ unique = []
 
 inventory.count("Broken knife")
 
+me = Player(Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,level ,user_class ,x ,y ,bullet)
+me.Hp
+
 # starting variables
+wall_score = 10
 x = 32
 y = 32
 boxy = 0
@@ -312,6 +316,7 @@ while running:
                         if player.colliderect(wall):
                             y +=32
                             print("hit wall")
+                            wall_score = wall_score - 1
                                 #moves the player down 32
                 if event.key == pygame.K_DOWN:
                     waiting = 0
@@ -322,6 +327,7 @@ while running:
                         if player.colliderect(wall):
                             y -=32
                             print("hit wall")
+                            wall_score = wall_score - 1
                             #moves the player left 32
                 if event.key == pygame.K_LEFT:
                     waiting = 0
@@ -332,6 +338,7 @@ while running:
                         if player.colliderect(wall):
                             x +=32
                             print("hit wall")
+                            wall_score = wall_score - 1
                             #moves the player right 32
                 if event.key == pygame.K_RIGHT:
                     waiting = 0
@@ -342,6 +349,7 @@ while running:
                         if player.colliderect(wall):
                             x -=32
                             print("hit wall")
+                            wall_score = wall_score - 1
                         #ends game
                 if event.type == pygame.QUIT:
                     waiting = 0
@@ -349,7 +357,9 @@ while running:
 #special character loading to avoid delay
     player = pygame.Rect(x,y,32,32)
     pygame.draw.rect(screen, (0,255,0), player, 2)
-
+    if wall_score == 0:
+        print("You died")
+        break
 #tick rate and prints it to screen
     clock.tick(60)
     pygame.display.flip()
