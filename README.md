@@ -43,3 +43,12 @@ added randomized walls pngs-Tristan
 
 5/1/2026 fixed enemy code-Tristan
 Started work on items- Blake
+
+5/11/2026
+seperated from blake and removed some of the extra prints that were used to check if the code was running
+
+5/13/2026
+started working on the home screen and character selector
+
+5/15/2026
+transformed the background and continued

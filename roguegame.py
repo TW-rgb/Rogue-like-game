@@ -27,6 +27,7 @@ class Player:
         self.level = 1
         #scales exponetly with higher levels, randomized xp requirement but still exponetial
 
+"""
 Mage = Player(50 ,100 ,5 ,1 ,5 ,15 ,inventory ,1)
 user = Mage
 
@@ -56,7 +57,7 @@ legebdary = []
 unique = []
 
 inventory.count("Broken knife")
-
+"""
 # starting variables
 x = 32
 y = 32
@@ -90,6 +91,16 @@ enemys = [
 ]
 enemytextures = [
 ]
+openningscreen = [
+]
+openingtexture = [
+]
+charactertextures = [
+]
+characterblocks = [
+]
+credits = [
+]
 #functions
 def blitall(listyss):
     for II in listyss:
@@ -99,7 +110,104 @@ def blitall(listyss):
 player = pygame.Rect(x,y,32,32)
 boxes = screen.width/50
 
+start_block = pygame.Rect(32, 32 *3, 576,64)
+setting_block = pygame.Rect(32, 32 *7, 576,64)
+creddits_block = pygame.Rect(32, 32 *11, 576,64)
+quit_block = pygame.Rect(32, 32 *15, 576,64)
+characteramount = 5
+charactblockX = 32
+charactblockY = 32
+while characteramount > 0:
+    characterblocks.append(pygame.Rect(charactblockX, charactblockY, 32,32))
+    charactblockX += 64
+    print("test")
+    if charactblockX == 32 * 9:
+        charactblockX = 32
+        charactblockY += 64
+        characteramount -= 1
+background = pygame.image.load('background.png')
+background = pygame.transform.scale(background, (background.get_width()*20, background.get_height()*20))
+openningscreen.append(start_block)
+#openingtexture.append(pygame.image.load('Partstart.png'))
+openningscreen.append(setting_block)
+openningscreen.append(creddits_block)
+openningscreen.append(quit_block)
+pointerx = 32
+pointery = 32 * 3
+Selectpointer = pygame.Rect(pointerx, pointery, 576,64)
+"""while running:
+    screen.blit(background, (0,0))
+    for STblock in openningscreen:
+        OSx = STblock.x
+        OSy = STblock.y
+        pygame.draw.rect(screen, (255,0,0), STblock, 2)
+        #start setting credits quit
+        pygame.draw.rect(screen, (0,0,255), Selectpointer, 2)
+        #screen.blit(texture, (OSx, OSy))
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            # selector controls
+            if event.key == pygame.K_UP:
+                pointery -= 128
+            if event.key == pygame.K_DOWN:
+                pointery += 128
+            if event.key == pygame.K_RETURN:
+                if pointery == 32 * 3:
+                    #character select
+                    screen.blit(background, (0,0))
+                    while running:
+                        for CHblock in characterblocks:
+                            OSx = CHblock.x
+                            OSy = CHblock.y
+                            print("other test")
+                            pygame.draw.rect(screen, (255,0,0), CHblock, 2)
+                            #screen.blit(texture, (OSx, OSy))
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYDOWN:
+                                # selector controls
+                                if event.key == pygame.K_UP:
+                                    pointery -= 128
+                                if event.key == pygame.K_DOWN:
+                                    pointery += 128
+                                if event.key == pygame.K_LEFT:
+                                    pointerx -= 128
+                                if event.key == pygame.K_RIGHT:
+                                    pointery += 128
+                        Selectpointer = pygame.Rect(pointerx, pointery, 64,64)
+                        pygame.draw.rect(screen, (0,0,255), Selectpointer, 2)
+                        pygame.display.flip()
+                elif pointery == 32 * 7:
+                    while running:
+                        print("settings")
+                elif pointery == 32 * 11:
+                    textx = 0
+                    texty = 0
+                    print("credits")
+                    font = pygame.font.SysFont("Arial", 30)
+                    credit1 = font.render("Art Tristan", True, (255, 255,255))
+                    credit2 = font.render("Enemy Ai Tristan", True, (255, 255,255))
+                    while running:
+                        screen.blit(background, (0,0))
+                        screen.blit(credit1, (textx,texty))
+                        screen.blit(credit2, (textx,texty + 30))
+                        texty += 5
+                        time.sleep(1)
+                        pygame.display.flip()
+                elif pointery == 32 * 15:
+                    print("quit")
+                    while running:
+                        pygame.quit()
+                        running = False
+
+    if pointery > 32 *15:
+        pointery = 32 * 3
+    if pointery < 32 *3:
+        pointery = 32 * 15
+    Selectpointer = pygame.Rect(pointerx, pointery, 576,64)
+    clock.tick(60)
+    pygame.display.flip()"""
 #the actual game
+running = True
 while running:
     run = True
     #player    # player end
@@ -108,38 +216,20 @@ while running:
         while screen.height > boxy >= 0:
             walls.append(pygame.Rect(boxx,boxy,32,32))
             boxy += 32
-            print("check A")
-            print(boxy)
-            print(boxx)
         while boxy == screen.height:
             boxy -= 32
-            print("check A-b")
-            print(boxy)
-            print(boxx)
         while screen.width > boxx >= 0:
             walls.append(pygame.Rect(boxx,boxy,32,32))
             boxx += 32
-            print("check b")
-            print(boxy)
-            print(boxx)
         while boxx == screen.width:
             boxx -= 32
-            print("check A-b2")
-            print(boxy)
-            print(boxx)
         while screen.height > boxy >= 0:
             walls.append(pygame.Rect(boxx,boxy,32,32))
             boxy -= 32
-            print("check A2")
-            print(boxy)
-            print(boxx)
         boxy = 0
         while screen.width > boxx >= 0:
             walls.append(pygame.Rect(boxx,boxy,32,32))
             boxx -= 32
-            print("check b2")
-            print(boxy)
-            print(boxx)
     #wall code end
     # floor code start
     while floory < screen.height and newroom == 1:
@@ -155,7 +245,6 @@ while running:
     if newroom == 1:
         for wall in walls:
             texture = random.randint(1,3)
-            print(texture)
             boxx = wall.x
             boxy = wall.y
             if texture == 1:
@@ -168,7 +257,6 @@ while running:
             screen.blit(platformimage, (boxx,boxy))
         for floor in floors:
             texture = random.randint(1,3)
-            print(texture)
             floorx = floor.x
             floory = floor.y
             if texture == 1:
@@ -183,8 +271,6 @@ while running:
     while enemycount > 0:
         enemie_x = random.randrange(0,640,32)
         enemie_y = random.randrange(0,640,32)
-        print(enemie_y)
-        print(enemie_x)
         enemys.append(pygame.Rect(enemie_x, enemie_y,32,32))
         enemycount -= 1
     for enemy in enemys:
@@ -214,7 +300,9 @@ while running:
         # RIGHT MOVEMENT
         if x > enemie_x:
             enemie_x += 32
+            print(enemys)
             enemys[index] = pygame.Rect(enemie_x, enemie_y,32,32)
+            print(enemys)
             if enemy.colliderect(player):
                 health -= 1
                 print(health)
@@ -289,7 +377,6 @@ while running:
     if firstime == 1:
         firstime = 0
         waiting = 0
-        print("click arrows to begin")
     while waiting == 1:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -311,7 +398,6 @@ while running:
                             #detects if player hits a wall
                         if player.colliderect(wall):
                             y +=32
-                            print("hit wall")
                                 #moves the player down 32
                 if event.key == pygame.K_DOWN:
                     waiting = 0
@@ -321,7 +407,6 @@ while running:
                             #detects if player hits a wall
                         if player.colliderect(wall):
                             y -=32
-                            print("hit wall")
                             #moves the player left 32
                 if event.key == pygame.K_LEFT:
                     waiting = 0
@@ -331,7 +416,6 @@ while running:
                             #detects if player hits a wall
                         if player.colliderect(wall):
                             x +=32
-                            print("hit wall")
                             #moves the player right 32
                 if event.key == pygame.K_RIGHT:
                     waiting = 0
@@ -341,7 +425,6 @@ while running:
                     for wall in walls:
                         if player.colliderect(wall):
                             x -=32
-                            print("hit wall")
                         #ends game
                 if event.type == pygame.QUIT:
                     waiting = 0
