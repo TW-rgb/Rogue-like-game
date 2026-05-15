@@ -58,6 +58,11 @@ unique = []
 
 inventory.count("Broken knife")
 """
+=======
+
+me = Player(Hp ,Mp ,Strength ,Speed ,Defense ,Intellgence ,inventory ,level ,user_class ,x ,y ,bullet)
+me.Hp
+
 # starting variables
 x = 32
 y = 32
